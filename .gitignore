@@ -1,0 +1,19 @@
+# Entornos Virtuales
+.env
+venv/
+backend/venv/
+
+# Base de datos local
+simulator.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Node.js / Frontend
+node_modules/
+dist/
+.DS_Store
+
+# Antigravity IDE
+.agents/
