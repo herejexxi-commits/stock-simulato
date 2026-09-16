@@ -2,10 +2,10 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://stock-simulator-backend.onrender.com/api/$1"
+      "destination": "https://stock-simulato.onrender.com/api/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/([^.]*)",
       "destination": "/index.html"
     }
   ]
