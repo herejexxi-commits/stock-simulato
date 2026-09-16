@@ -105,8 +105,12 @@ function Sidebar({ activeUser, setActiveUser }) {
 
   useEffect(() => {
     fetchCash();
-    // Auto refresh every 60s
-    const interval = setInterval(fetchCash, 60000);
+    // Auto refresh every 5 mins (300000ms), only if the tab is active
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        fetchCash();
+      }
+    }, 300000);
     return () => clearInterval(interval);
   }, [activeUser, location]); // location to refresh cash on navigation
 
@@ -178,7 +182,16 @@ function Sidebar({ activeUser, setActiveUser }) {
         <TradePanel activeUser={activeUser} onTradeSuccess={fetchCash} />
         
         <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
-          <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.25rem' }}>Efectivo Disponible</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
+            <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Efectivo Disponible</div>
+            <button 
+              onClick={() => { fetchCash(); window.location.reload(); }} 
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem' }}
+              title="Actualizar datos"
+            >
+              🔄
+            </button>
+          </div>
           <div style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--success-color)' }}>
             ${cash.toLocaleString(undefined, {minimumFractionDigits: 2})}
           </div>
