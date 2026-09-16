@@ -9,4 +9,5 @@ gunicorn
 uvicorn
 fastapi  
 python-dotenv
+google-generativeai
  
