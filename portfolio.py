@@ -9,9 +9,10 @@ def parse_date(ts_str):
     if not ts_str:
         return datetime.now()
     if isinstance(ts_str, datetime):
-        return ts_str
+        return ts_str.replace(tzinfo=None)
     try:
-        return pd.to_datetime(ts_str).to_pydatetime()
+        dt = pd.to_datetime(ts_str).to_pydatetime()
+        return dt.replace(tzinfo=None)
     except Exception:
         return datetime.now()
 

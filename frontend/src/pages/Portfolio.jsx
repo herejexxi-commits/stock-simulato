@@ -10,13 +10,17 @@ export default function Portfolio({ user }) {
   useEffect(() => {
     setLoading(true);
     fetch(`/api/portfolio/${user}`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("API Error");
+        return res.json();
+      })
       .then(d => {
         setData(d);
         setLoading(false);
       })
       .catch(err => {
         console.error(err);
+        setData(null);
         setLoading(false);
       });
   }, [user]);
