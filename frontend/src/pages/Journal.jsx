@@ -65,6 +65,7 @@ export default function Journal({ user }) {
                 <th style={{ padding: '0.75rem' }}>Fecha Salida</th>
                 <th style={{ padding: '0.75rem' }}>P&L ($)</th>
                 <th style={{ padding: '0.75rem' }}>P&L (%)</th>
+                <th style={{ padding: '0.75rem' }}>Estrategia</th>
               </tr>
             </thead>
             <tbody>
@@ -82,6 +83,9 @@ export default function Journal({ user }) {
                     </td>
                     <td style={{ padding: '0.75rem', color: isWin ? 'var(--success-color)' : 'var(--danger-color)' }}>
                       {isWin ? '+' : ''}{t['P&L (%)'].toFixed(2)}%
+                    </td>
+                    <td style={{ padding: '0.75rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                      {t.Notes || '-'}
                     </td>
                   </tr>
                 );

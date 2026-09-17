@@ -13,6 +13,8 @@ const Admin = () => <div className="glass p-6 animate-fade-in" style={{ padding:
 function TradePanel({ activeUser, onTradeSuccess }) {
   const [symbol, setSymbol] = useState('');
   const [shares, setShares] = useState(1);
+  const [modelo, setModelo] = useState('');
+  const [plazo, setPlazo] = useState('1 mes');
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState(null);
 
@@ -21,10 +23,15 @@ function TradePanel({ activeUser, onTradeSuccess }) {
     setLoading(true);
     setMsg(null);
     try {
+      let notes = '';
+      if (modelo || plazo) {
+        notes = `Modelo: ${modelo || 'N/A'} | Plazo: ${plazo || 'N/A'}`;
+      }
+      
       const response = await fetch(`/api/portfolio/${activeUser}/${action}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ symbol: symbol.toUpperCase(), shares })
+        body: JSON.stringify({ symbol: symbol.toUpperCase(), shares, notes })
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || 'Error al operar');
@@ -62,6 +69,32 @@ function TradePanel({ activeUser, onTradeSuccess }) {
           onChange={e => setShares(parseFloat(e.target.value))}
           style={{ padding: '0.5rem', fontSize: '0.9rem' }}
         />
+      </div>
+
+      <div style={{ marginBottom: '1rem' }}>
+        <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Modelo Predictivo</label>
+        <input 
+          type="text" 
+          value={modelo} 
+          onChange={e => setModelo(e.target.value)}
+          placeholder="Ej. Random Forest" 
+          style={{ padding: '0.5rem', fontSize: '0.9rem' }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Plazo de Expiración</label>
+        <select 
+          value={plazo} 
+          onChange={e => setPlazo(e.target.value)}
+          style={{ padding: '0.5rem', fontSize: '0.9rem' }}
+        >
+          <option value="1 mes">1 mes</option>
+          <option value="3 meses">3 meses</option>
+          <option value="6 meses">6 meses</option>
+          <option value="1 año">1 año</option>
+          <option value="Sin plazo">Sin plazo</option>
+        </select>
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -207,7 +240,7 @@ function App() {
               <button className="mobile-toggle" onClick={(e) => { e.stopPropagation(); setIsMobileOpen(!isMobileOpen); }}>
                 ☰
               </button>
-              <h1 style={{ margin: 0 }}>Simulador de Bolsa Pro</h1>
+              <h1 style={{ margin: 0 }}>Simulador de Bolsa</h1>
             </div>
           </header>
 
