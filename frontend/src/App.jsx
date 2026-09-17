@@ -138,7 +138,7 @@ function Sidebar({ activeUser, setActiveUser }) {
     }} className="glass">
       
       <div>
-        <h2 className="title-gradient" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>StockSim Pro</h2>
+
         
         <div style={{ marginBottom: '1rem' }}>
           <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>👤 Perfil Activo</label>
@@ -214,7 +214,6 @@ function App() {
           <header className="app-header">
             <div>
               <h1 style={{ margin: 0 }}>Simulador de Bolsa Pro</h1>
-              <p style={{ margin: 0, marginTop: '0.25rem', color: 'var(--text-secondary)' }}>Visualizando datos de mercado en tiempo real con FastAPI y React</p>
             </div>
           </header>
 
