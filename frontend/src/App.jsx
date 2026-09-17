@@ -92,7 +92,7 @@ function TradePanel({ activeUser, onTradeSuccess }) {
   );
 }
 
-function Sidebar({ activeUser, setActiveUser }) {
+function Sidebar({ activeUser, setActiveUser, isMobileOpen, setIsMobileOpen }) {
   const location = useLocation();
   const [cash, setCash] = useState(0);
 
@@ -124,18 +124,7 @@ function Sidebar({ activeUser, setActiveUser }) {
   ];
 
   return (
-    <div style={{
-      width: 'var(--sidebar-width)',
-      height: '100vh',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      padding: '1.5rem',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem',
-      overflowY: 'auto'
-    }} className="glass">
+    <div className={`glass app-sidebar ${isMobileOpen ? 'open' : ''}`}>
       
       <div>
 
@@ -159,6 +148,7 @@ function Sidebar({ activeUser, setActiveUser }) {
             <Link 
               key={item.path} 
               to={item.path}
+              onClick={() => { if(window.innerWidth <= 768) setIsMobileOpen(false); }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -204,15 +194,19 @@ function Sidebar({ activeUser, setActiveUser }) {
 
 function App() {
   const [activeUser, setActiveUser] = useState('Juan David');
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <Router>
       <div className="app-container">
-        <Sidebar activeUser={activeUser} setActiveUser={setActiveUser} />
+        <Sidebar activeUser={activeUser} setActiveUser={setActiveUser} isMobileOpen={isMobileOpen} setIsMobileOpen={setIsMobileOpen} />
         
-        <main className="main-content">
+        <main className="main-content" onClick={() => { if(isMobileOpen) setIsMobileOpen(false); }}>
           <header className="app-header">
-            <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <button className="mobile-toggle" onClick={(e) => { e.stopPropagation(); setIsMobileOpen(!isMobileOpen); }}>
+                ☰
+              </button>
               <h1 style={{ margin: 0 }}>Simulador de Bolsa Pro</h1>
             </div>
           </header>
