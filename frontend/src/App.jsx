@@ -12,7 +12,8 @@ const Admin = () => <div className="glass p-6 animate-fade-in" style={{ padding:
 
 function TradePanel({ activeUser, onTradeSuccess }) {
   const [symbol, setSymbol] = useState('');
-  const [shares, setShares] = useState(1);
+  const [tradeMode, setTradeMode] = useState('shares');
+  const [inputValue, setInputValue] = useState(1);
   const [modelo, setModelo] = useState('');
   const [plazo, setPlazo] = useState('1 mes');
   const [loading, setLoading] = useState(false);
@@ -28,10 +29,17 @@ function TradePanel({ activeUser, onTradeSuccess }) {
         notes = `Modelo: ${modelo || 'N/A'} | Plazo: ${plazo || 'N/A'}`;
       }
       
+      let payload = { symbol: symbol.toUpperCase(), notes };
+      if (tradeMode === 'shares') {
+        payload.shares = inputValue;
+      } else {
+        payload.amount_usd = inputValue;
+      }
+
       const response = await fetch(`/api/portfolio/${activeUser}/${action}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ symbol: symbol.toUpperCase(), shares, notes })
+        body: JSON.stringify(payload)
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || 'Error al operar');
@@ -61,13 +69,23 @@ function TradePanel({ activeUser, onTradeSuccess }) {
       </div>
       
       <div style={{ marginBottom: '1rem' }}>
-        <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Acciones</label>
+        <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Operar por</label>
+        <select 
+          value={tradeMode} 
+          onChange={e => setTradeMode(e.target.value)}
+          style={{ padding: '0.5rem', fontSize: '0.9rem', marginBottom: '0.5rem' }}
+        >
+          <option value="shares">Cantidad de Acciones</option>
+          <option value="usd">Monto en Dólares (USD)</option>
+        </select>
+
         <input 
           type="number" 
           min="0.01" step="0.01" 
-          value={shares} 
-          onChange={e => setShares(parseFloat(e.target.value))}
+          value={inputValue} 
+          onChange={e => setInputValue(parseFloat(e.target.value))}
           style={{ padding: '0.5rem', fontSize: '0.9rem' }}
+          placeholder={tradeMode === 'shares' ? "Ej. 1.5" : "Ej. 100.00"}
         />
       </div>
 
