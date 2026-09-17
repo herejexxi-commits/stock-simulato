@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-color: #0b1120;
-  --bg-secondary: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
-  --success-color: #10b981;
-  --danger-color: #ef4444;
-  --warning-color: #f59e0b;
-  --card-bg: rgba(30, 41, 59, 0.5);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --sidebar-width: 320px;
-  --header-height: 70px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bg-color: #131722;
+  --bg-secondary: #1E222D;
+  --text-primary: #D1D4DC;
+  --text-secondary: #787B86;
+  --accent-color: #2962FF;
+  --accent-hover: #1E53E5;
+  --success-color: #089981;
+  --danger-color: #F23645;
+  --warning-color: #F5A623;
+  --card-bg: #1E222D;
+  --card-border: #2A2E39;
+  --sidebar-width: 250px;
+  --header-height: 60px;
+  --transition: all 0.2s ease-in-out;
 }
 
 * {
@@ -26,22 +26,16 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
-  background-attachment: fixed;
 }
 
-/* Glassmorphism Classes */
+/* Replaces old glassmorphism with solid dark panels */
 .glass {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
-  border-radius: 16px;
+  border-radius: 4px;
 }
 
 /* Typography */
@@ -49,11 +43,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.5em;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 p {
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text-secondary);
 }
 
@@ -64,13 +58,13 @@ button {
   transition: var(--transition);
   border: none;
   outline: none;
+  border-radius: 4px;
 }
 
 .btn-primary {
   background: var(--accent-color);
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -80,30 +74,27 @@ button {
 
 .btn-primary:hover {
   background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: var(--text-primary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
   font-weight: 500;
   border: 1px solid var(--card-border);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 input, select, textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-color);
   border: 1px solid var(--card-border);
   color: var(--text-primary);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
   font-family: inherit;
   transition: var(--transition);
 }
@@ -111,7 +102,6 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 /* App Layout */
@@ -125,34 +115,24 @@ input:focus, select:focus, textarea:focus {
   display: flex;
   flex-direction: column;
   margin-left: var(--sidebar-width);
-  padding: 2rem;
+  padding: 1.5rem;
   min-height: 100vh;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-secondary);
-  border-radius: 4px;
+  background: #363A45;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: #434651;
 }
 
 /* Utility Text Colors */

@@ -71,7 +71,7 @@ export default function Journal({ user }) {
               {closedTrades.map((t, idx) => {
                 const isWin = t['P&L ($)'] >= 0;
                 return (
-                  <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--card-border)' }}>
                     <td style={{ padding: '0.75rem', fontWeight: 600 }}>{t.Symbol}</td>
                     <td style={{ padding: '0.75rem' }}>{t.Shares.toFixed(4)}</td>
                     <td style={{ padding: '0.75rem' }}>${t['Buy Price'].toFixed(2)}</td>

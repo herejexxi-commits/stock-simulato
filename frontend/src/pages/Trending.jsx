@@ -32,7 +32,8 @@ export default function Trending() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h3 style={{ fontSize: '1.5rem', margin: 0 }}>{stock.symbol}</h3>
                 <span style={{ 
-                  background: 'rgba(16, 185, 129, 0.2)', 
+                  background: 'transparent', 
+                  border: '1px solid var(--success-color)',
                   color: 'var(--success-color)', 
                   padding: '0.25rem 0.5rem', 
                   borderRadius: '4px',

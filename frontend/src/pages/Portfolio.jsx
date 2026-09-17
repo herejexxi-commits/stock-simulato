@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
+const COLORS = ['#2962FF', '#089981', '#F23645', '#F5A623', '#9C27B0', '#00BCD4'];
 
 export default function Portfolio({ user }) {
   const [data, setData] = useState(null);
@@ -93,7 +93,7 @@ export default function Portfolio({ user }) {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
               <XAxis dataKey="name" stroke="var(--text-secondary)" />
               <YAxis stroke="var(--text-secondary)" />
-              <Tooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} />
+              <Tooltip cursor={{fill: 'var(--card-border)'}} />
               <Bar dataKey="pnl" fill="var(--accent-color)">
                 {barData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.pnl >= 0 ? 'var(--success-color)' : 'var(--danger-color)'} />
@@ -124,7 +124,7 @@ export default function Portfolio({ user }) {
               {data.positions.map((pos, idx) => {
                 const pnl = pos['P&L ($)'];
                 return (
-                  <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <tr key={idx} style={{ borderBottom: '1px solid var(--card-border)' }}>
                     <td style={{ padding: '1rem', fontWeight: 600 }}>{pos.Symbol}</td>
                     <td style={{ padding: '1rem' }}>{pos.Shares.toFixed(4)}</td>
                     <td style={{ padding: '1rem' }}>${pos['Average Cost'].toFixed(2)}</td>

@@ -39,7 +39,7 @@ function TradePanel({ activeUser, onTradeSuccess }) {
   };
 
   return (
-    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>
+    <div style={{ background: 'var(--bg-color)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--card-border)', marginBottom: '1rem' }}>
       <h3 style={{ fontSize: '1rem', marginBottom: '1rem' }}>🛒 Panel de Operaciones</h3>
       
       <div style={{ marginBottom: '1rem' }}>
@@ -164,7 +164,7 @@ function Sidebar({ activeUser, setActiveUser }) {
                 alignItems: 'center',
                 gap: '1rem',
                 padding: '0.75rem 1rem',
-                borderRadius: '8px',
+                borderRadius: '4px',
                 textDecoration: 'none',
                 color: isActive ? 'white' : 'var(--text-secondary)',
                 background: isActive ? 'var(--accent-color)' : 'transparent',
@@ -181,7 +181,7 @@ function Sidebar({ activeUser, setActiveUser }) {
       <div style={{ marginTop: 'auto' }}>
         <TradePanel activeUser={activeUser} onTradeSuccess={fetchCash} />
         
-        <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px' }}>
+        <div style={{ background: 'var(--bg-color)', padding: '1rem', borderRadius: '4px', border: '1px solid var(--card-border)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
             <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Efectivo Disponible</div>
             <button 

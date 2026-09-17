@@ -9,7 +9,5 @@
 }
 
 .title-gradient {
-  background: linear-gradient(to right, #3b82f6, #10b981);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }

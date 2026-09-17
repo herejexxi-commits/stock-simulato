@@ -33,11 +33,11 @@ export default function Versus() {
       <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>🏆 Competencia Global</h2>
       
       {leader ? (
-        <div style={{ background: 'rgba(16, 185, 129, 0.2)', padding: '1rem', borderRadius: '8px', color: 'var(--success-color)', marginBottom: '2rem', fontWeight: 600 }}>
+        <div style={{ background: 'transparent', padding: '1rem', borderRadius: '4px', border: '1px solid var(--success-color)', color: 'var(--success-color)', marginBottom: '2rem', fontWeight: 600 }}>
           👑 ¡{leader} va ganando la competencia!
         </div>
       ) : (
-        <div style={{ background: 'rgba(59, 130, 246, 0.2)', padding: '1rem', borderRadius: '8px', color: 'var(--accent-color)', marginBottom: '2rem', fontWeight: 600 }}>
+        <div style={{ background: 'transparent', padding: '1rem', borderRadius: '4px', border: '1px solid var(--accent-color)', color: 'var(--accent-color)', marginBottom: '2rem', fontWeight: 600 }}>
           ⚖️ ¡Están completamente empatados!
         </div>
       )}
